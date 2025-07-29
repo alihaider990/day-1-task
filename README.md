@@ -1,2 +1,2 @@
-# day-1-task
-python task day 1
+# daily tasks
+python tasks
