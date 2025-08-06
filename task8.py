@@ -26,20 +26,20 @@
 #print(reverse_string("ali haider"))
 
 
-#my_list = [34,61,23,67,89,21,70]
-#def second_largest(my_list):
- #   largest = max(my_list)
- #   second = 0
- #   for i in range(0, len(my_list)):
- #       if my_list[i] < largest and my_list[i] > second:
- #           second = my_list[i]
- #   print("second largest number is", second)
-#second_largest(my_list) 
 
 
+def second_largest(my_list):
+    largest = max(my_list)
+    second = 0
+    for num in my_list:
+        if num > second and num != largest:
+           second = num
+    return second  
 
 
-
+my_list = [34, 61, 23, 67, 89, 21, 70]
+result = second_largest(my_list)
+print("second largest number is:", result)
 
 
 
@@ -55,3 +55,4 @@
 
 
     
+
