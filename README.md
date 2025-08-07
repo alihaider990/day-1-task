@@ -1,2 +1,2 @@
 # daily tasks
-python tasks for learning and etc 
+python tasks for learning
