@@ -1,6 +1,7 @@
-def capitalize_first_letter(string):
-    return string.capitalize()
-print(capitalize_first_letter("ali haider"))
+def count_wovels(string):
+    input(int("enter any thing"))
+    
+
 
 
 
