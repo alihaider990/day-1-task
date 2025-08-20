@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     
+</head>
+<body>
+    <style>
+        body{
+         background-color: grey;
+        }
+    </style>
+    <h2 style="color:#2C3E50;">to-do list app </h2>
+    <hr>
+    <input type="text" id="Input" placeholder="Enter any task" style="background-color: black; color:WHITE;"> 
+    <br><br><br>
+    <hr>
+    <br>
+    <button id="addBtn" style="color: rgb(8, 72, 10);
+     background-color: black; color:#2C3E50; ">add any task Task</button>
+     <br>
+       <hr>
+      
+      
+    <ul id="taskList" style="color: white;"></ul>
+    <button id="btn1" style="background-color: black; color:#2C3E50;">double click for submitting</button>
+    
+    <script>
+    
+    let btn = document.getElementById("addBtn")
+    btn.addEventListener("click", () => {
+        let input = document.querySelector("Input");
+        if(!input.value.trim()) 
+            return;
+        let li = document.createElement("li");
+        li.innerHTML= `${input.value}  <button style="background-color: rgb(14, 18, 18); color:#2C3E50; float: right;">DELETE</button>`;
+        li.querySelector("button").onclick = () => li.remove();
+        document.getElementById("taskList").appendChild(li);
+        input.value= "";
+    });
+    let btn1 = document.getElementById("btn1");
+    btn1.addEventListener("dblclick", () => {
+          btn1.textContent =  alert(" list submittedd");
+    });
+    </script>
+</body>
+</html>
