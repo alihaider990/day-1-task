@@ -1,7 +1,5 @@
-def is_prime(n):
- for i in range(2, n):
-    if not(n % i):
-        return False
-        return True
+def my_introduction(name, age):
+    return f"My name is {name} and I am {age} years old."
 
-
+result = my_introduction("ali", 22)
+print(result)
