@@ -1,5 +1,7 @@
-def my_introduction(name, age):
-    return f"My name is {name} and I am {age} years old."
 
-result = my_introduction("ali", 22)
-print(result)
+
+
+list1 = [1,2,3,4,5]
+list2 = [4,5,6,9]
+merge = [*list1, *list2]
+print(merge)
