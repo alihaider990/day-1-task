@@ -1,7 +1,7 @@
+my_list = [65,30,20,90]
+target = 50
 
-
-
-list1 = [1,2,3,4,5]
-list2 = [4,5,6,9]
-merge = [*list1, *list2]
-print(merge)
+for i in range(len(my_list)):
+    for j in range(i + 1,len(my_list)):
+        if my_list[i] + my_list[j] == target:
+         print([i,j])
