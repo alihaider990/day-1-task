@@ -1,20 +1,6 @@
-my_list = [12, 31, 34, 34, 64, 65, 78, 87, 90]  
-target = 90
 
-left = 0
-right = len(my_list) - 1
 
-found = False
-while left <= right:
-    middle = (left + right) // 2
-    if my_list[middle] == target:
-        print(middle)
-        found = True
-        break
-    elif my_list[middle] < target:
-        left = middle + 1
-    else:
-        right = middle - 1
 
-if not found:
-    print(-1)
+BIG O NOTATION is basically timecomplexcity like how much time or steps/efficiency it will take to perfrom the task through algorithms_available
+linear search: is basically used for small problems like finding an index of an number of list of 6 MemberDescriptorType
+binary search : is basically used for complex problems in which list must be sorted , unsorted list will not work here it will be used to perform complex tasks like if we wanna find 56 floor in a building of 100 floor, and finding something in an book or dictionary. 
