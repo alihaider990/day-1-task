@@ -1,11 +1,14 @@
 import asyncio
+import aiohttp
 
-async def delay(seconds):
-    await asyncio.sleep(seconds)
+async def get_user():
+    url = "https://jsonplaceholder.typicode.com/users/1"
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as response:
+                data = await response.json()
+                print("User:", data)
+    except Exception as error:
+        print("Error:", error)
 
-async def run_task():
-    print("task starting")
-    await asyncio.sleep(2)
-    print("task started after 2 seconds")
-
-asyncio.run(run_task())
+asyncio.run(get_user())
