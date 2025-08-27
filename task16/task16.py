@@ -1,24 +1,23 @@
 import asyncio
 
-async def my_promise(success):
-    if success:
-        return "Task completed successfully "
-    else:
-        raise Exception("Task failed ")
+async def start_with_delay(num):
+    
+    await asyncio.sleep(1)
+    return num
+
+async def multiply_by_two(num):
+    
+    return num * 2
+
+async def add_five(num):
+    
+    return num + 5
 
 async def main():
     
-    try:
-        result = await my_promise(True)
-        print(result)  
-    except Exception as error:
-        print(error)
-    
-     
-    try:
-        result = await my_promise(False) 
-        print(result)  
-    except Exception as error:
-        print(error)
+    start_value = await start_with_delay(10)
+    multiplied = await multiply_by_two(start_value)
+    result = await add_five(multiplied)
+    print(result)  
 
-asyncio.run(main()) 
+asyncio.run(main())
