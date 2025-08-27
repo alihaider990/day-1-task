@@ -1,14 +1,13 @@
 import asyncio
-import aiohttp
 
-async def get_user():
-    url = "https://jsonplaceholder.typicode.com/users/1"
-    try:
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as response:
-                data = await response.json()
-                print("User:", data)
-    except Exception as error:
-        print("Error:", error)
+async def sleep_ms(milliseconds):
+    
+    seconds = milliseconds / 1000
+    await asyncio.sleep(seconds)
 
-asyncio.run(get_user())
+async def test_sleep():
+    print("starting the task")
+    await sleep_ms(1500)  
+    print("Finished after 1.5 seconds")
+
+asyncio.run(test_sleep())
