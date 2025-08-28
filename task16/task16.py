@@ -1,13 +1,25 @@
 import asyncio
 
-async def sleep_ms(milliseconds):
-    
-    seconds = milliseconds / 1000
-    await asyncio.sleep(seconds)
+async def task1():
+    print("Task 1 started")
+    await asyncio.sleep(1)
+    print("Task 1 finished")
 
-async def test_sleep():
-    print("starting the task")
-    await sleep_ms(1500)  
-    print("Finished after 1.5 seconds")
+async def task2():
+    print("Task 2 started")
+    await asyncio.sleep(1)
+    print("Task 2 finished")
 
-asyncio.run(test_sleep())
+async def task3():
+    print("Task 3 started")
+    await asyncio.sleep(1)
+    raise Exception("Error in Task 3!")
+
+async def main():
+    tasks = [task1(), task2(), task3()]
+    try:
+        await asyncio.gather(*tasks)
+    except Exception as e:
+        print(f"Caught an exception: {e}")
+
+asyncio.run(main())
