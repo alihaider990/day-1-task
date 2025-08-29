@@ -1,11 +1,13 @@
-def multiplyBy(n):
-    def multiplier(x):
-        return x * n
-    return multiplier
+def createCounter():
+    count = 0
+    def counter():
+        nonlocal count
+        count += 1
+        return count
+    return counter
 
 
-double = multiplyBy(2)
-triple = multiplyBy(3)
-
-print(double(5))  
-print(triple(5)) 
+counter = createCounter()
+print(counter())  
+print(counter())  
+print(counter())  
