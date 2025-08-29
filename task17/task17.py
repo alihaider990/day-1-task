@@ -1,20 +1,11 @@
-def createCounter():
-    count = 0
-
-    def increment():
-        nonlocal count
-        count += 1
-        return count
-
-    def decrement():
-        nonlocal count
-        count -= 1
-        return count
-
-    return increment, decrement
+def multiplyBy(n):
+    def multiplier(x):
+        return x * n
+    return multiplier
 
 
-inc, dec = createCounter()
-print(inc())  
-print(inc())  
-print(dec())  
+double = multiplyBy(2)
+triple = multiplyBy(3)
+
+print(double(5))  
+print(triple(5)) 
