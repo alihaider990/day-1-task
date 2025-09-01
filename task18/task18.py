@@ -1,32 +1,19 @@
 import requests
 
+url = "https://jsonplaceholder.typicode.com/posts"
+payload = {
+    "title": "My custom title is this",
+    "body": "This is body of my post.",
+    "userId": 1
+}
+headers = {
+    "Content-type": "application/json; charset=UTF-8"
+}
 
 try:
-    response = requests.get("https://jsonplaceholder.typicode.com/posts")
-    response.raise_for_status()  
-    posts = response.json()
-    print("First 5 post titles:")
-    for post in posts[:5]:
-        print(post["title"])
-except requests.RequestException as e:
-    print("Error fetching all posts:", e)
-
-
-try:
-    response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
+    response = requests.post(url, json=payload, headers=headers)
     response.raise_for_status()
-    post = response.json()
-    print("\nSingle post (/posts/1):")
-    print(post)
-except requests.RequestException as e:
-    print("Error fetching single post:", e)
-
-
-try:
-    response = requests.get("https://jsonplaceholder.typicode.com/wrongurl")
-    response.raise_for_status()
-    data = response.json()
-    print("\nWrong URL response:")
-    print(data)
-except requests.RequestException as e:
-    print("\nError with wrong URL:", e)
+    print("Response from POST request:")
+    print(response.json())
+except requests.RequestException as l:
+    print("Error creating post:", l)
