@@ -1,33 +1,21 @@
 class Person:
-    def __init__(self, name, age):
+    def __init__(self, name):
         self.name = name
-        self.age = age
-
-    def get_age(self):
-        return self.age
 
 class Student(Person):  
-    def __init__(self, name, age, grade):
-        super().__init__(name, age)  
-        self._grade = grade          
+    def __init__(self, name, grade):
+        super().__init__(name)
+        self.grade = grade  
 
-    @property
-    def grade(self):
-        return self._grade
+    @staticmethod
+    def compare(student1, student2):
+        if student1.grade > student2.grade:
+            return f"{student1.name} has a higher grade."
+        elif student1.grade < student2.grade:
+            return f"{student2.name} has a higher grade."
+student1 = Student("Ali", 90)
+student2 = Student("Hassan", 85)
 
-    @grade.setter
-    def grade(self, value):
-        self._grade = value
-
-    
-    def get_age(self):
-        return f"{self.name} is {self.age} years old and in grade {self.grade}"
-
-
-student1 = Student("Ali", 22, "9")
-print(student1.get_age())  
-
-
-
-
-
+result = Student.compare(student1, student2)
+print(result)  
+     
