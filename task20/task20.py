@@ -1,18 +1,32 @@
-class person:
-        def __init__(self, name, age):
-          self.age = age
-          self.name = age
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
 
-        def get_age(self):
-            return self.age
+    def get_age(self):
+        return self.age
 
-        def set_age(self, new_age):
-                self.age  = new_age
+class Student(Person):  
+    def __init__(self, name, age, grade):
+        super().__init__(name, age)  
+        self._grade = grade          
 
-person1 = person("ali", 22)
-print(person1.get_age())
-person1.set_age(27)
-print(person1.get_age())
+    @property
+    def grade(self):
+        return self._grade
+
+    @grade.setter
+    def grade(self, value):
+        self._grade = value
+
+    
+    def get_age(self):
+        return f"{self.name} is {self.age} years old and in grade {self.grade}"
+
+
+student1 = Student("Ali", 22, "9")
+print(student1.get_age())  
+
 
 
 
