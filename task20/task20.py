@@ -1,11 +1,19 @@
-class Car:
-    def __init__(self, year, brand, model):
-        self.year = year
-        self.brand = brand
-        self.model = model
+class person:
+        def __init__(self, name, age):
+          self.age = age
+          self.name = age
 
-    def getdetails(self):
-        return f"{self.year} {self.brand} {self.model}"
+        def get_age(self):
+            return self.age
 
-car1 = Car(2008, "mercedes", "c63")
-print(car1.getdetails())  
+        def set_age(self, new_age):
+                self.age  = new_age
+
+person1 = person("ali", 22)
+print(person1.get_age())
+person1.set_age(27)
+print(person1.get_age())
+
+
+
+
