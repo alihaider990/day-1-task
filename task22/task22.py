@@ -1,12 +1,29 @@
-def reverse_integer(n):
-    reversed_str = ""
-    for char in str(n):
-        reversed_str = char + reversed_str
-    return int(reversed_str)
+def find_duplicates(n):
+        result = []
+        for i in range(len(n)):
+            if n[i] not in result:
+                result.append(n[i])
+            else:
+                    return i
 
-num = 123
-result = reverse_integer(num)
+num = [1,2,3,4,5,5]
+result = find_duplicates(num)
 print(result)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
