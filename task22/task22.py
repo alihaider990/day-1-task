@@ -1,14 +1,20 @@
-def find_duplicates(n):
-        result = []
-        for i in range(len(n)):
-            if n[i] not in result:
-                result.append(n[i])
-            else:
-                    return i
+class Shape:
+    def area(self):
+        
+        return 0
 
-num = [1,2,3,4,5,5]
-result = find_duplicates(num)
-print(result)
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        
+        return self.width * self.height
+
+
+rect = Rectangle(5, 3)
+print(rect.area())  
 
 
 
