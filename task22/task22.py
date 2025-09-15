@@ -15,3 +15,21 @@ class Rectangle(Shape):
 
 rect = Rectangle(5, 3)
 print(rect.area())  
+
+
+
+#leet code task 1
+
+def reverse_integer(n):
+    s = str(n)
+    result = []
+    for i in range(len(s) - 1, -1, -1):  #time complexity is o(k) becasue we are iterating through the string.
+        result.append(s[i])
+    return int(''.join(result))
+
+print(reverse_integer(123))                  
+
+
+
+
+
