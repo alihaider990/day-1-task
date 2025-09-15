@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>to do list app</h1>
+  <input id="input">
+  <button onclick="addTodo()">Add</button>
+  <ol id="list"></ol>
+  <script>
+    let todos = [];
+    function addTodo() {
+      let todo = input.value.trim();
+      if(todo) {
+        todos.push({task: todo, completed: false});
+        input.value = '';
+        show();
+      }
+    }
+    function show() {
+      list.innerHTML = '';
+      todos.forEach((todo, i) => {
+        let li = document.createElement('li');
+        li.textContent = todo.task + (todo.completed ? ' (done)' : '');
+        li.onclick = () => {
+          todo.completed = !todo.completed;
+          show();
+        }
+        list.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
