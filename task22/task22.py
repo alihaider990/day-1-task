@@ -15,30 +15,3 @@ class Rectangle(Shape):
 
 rect = Rectangle(5, 3)
 print(rect.area())  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
