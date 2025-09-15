@@ -31,5 +31,17 @@ print(reverse_integer(123))
 
 
 
+#leet code task 2
 
+def find_duplicates(n):
+    seen = set()
+    for i in range(len(n)):  #time complexcity is o(n) because we are iterating through the list. 
+        if n[i] not in seen:
+            seen.add(n[i])
+        else:
+            return i
+
+num = [1,2,3,4,5,5]
+result = find_duplicates(num)
+print(result)
 
