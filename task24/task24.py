@@ -2,19 +2,20 @@ class Attendance:
     def __init__(self, id, name):
         self.id = id
         self.name = name
-        self.attendance = []   
+        self.attendance = []
 
     def mark_attendance(self, status):
-        if status in ("P", "A"):  
+        status = status.upper()  
+        if status in ("P", "A"):
             self.attendance.append(status)
             if status == "P":
                 print(f"{self.name} is present")
             else:
                 print(f"{self.name} is absent")
         else:
-            print("Invalid status and use p for present and A for absent")
+            print("Invalid status. Use p for present and a for absent")
 
-    def attendance_percentage(self):   
+    def attendance_percentage(self):
         total = len(self.attendance)
         if total == 0:
             return None
@@ -24,7 +25,7 @@ class Attendance:
 
     def below_75(self):
         percentage = self.attendance_percentage()
-        return percentage < 75 
+        return percentage is not None and percentage < 75
 
     def display_attendance(self):
         print(f"Student id: {self.id}")
@@ -40,31 +41,25 @@ class Attendance:
             else:
                 print("Attendance is sufficient.")
 
-student=Attendance(1,"Ali")
-student.mark_attendance("P")
-student.display_attendance()
 
-student2=Attendance(2,"haider")
-student2.mark_attendance("P")
-student2.display_attendance()
-
-student3=Attendance(3,"hassan")
-student3.mark_attendance("A")
-student3.display_attendance()
-
-student4=Attendance(4,"ismail")
-student4.mark_attendance("A")
-student4.display_attendance()   
+students = [
+    Attendance(1, "Ali"),
+    Attendance(2, "Haider"),
+    Attendance(3, "Hassan"),
+    Attendance(4, "Ismail")
+]
 
 
+marking_attendance = ["p", "P", "a", "A"]
+
+for student, mark in zip(students, marking_attendance):
+    student.mark_attendance(mark)
+    student.display_attendance()
 
 
-# time complexity is O(n) because we are checking each student one by one   
+print("\nStudents those attandance is below 75%:")
+for student in students:
+    if student.below_75():
+        print(f"{student.name} ({student.id}) - {student.attendance_percentage():.2f}%")
 
-
-
-
-
-
-
-        
+        #time complexcity is 0(1) bacuase we are checking each student one by one
