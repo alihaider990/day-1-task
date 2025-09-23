@@ -6,9 +6,7 @@ for i in range(len(my_list)):
         if my_list[i] + my_list[j] == target:
             print({i + 1, j + 1})
 
-            # time complexcity is 0(n)
-
-
+            # time complexcity is 0(n*2)
 
 class Movie:
     def __init__(self, movie_name, movie_id, available_seats, price_per_ticket):
@@ -17,7 +15,7 @@ class Movie:
         self.available_seats = available_seats
         self.price_per_ticket = price_per_ticket
 
-class cinemahall:
+class Cinemahall:
     def __init__(self):
         self.movies = {}
         self.total_rev = 0
@@ -26,26 +24,35 @@ class cinemahall:
         self.movies[movie.movie_id] = movie
 
     def book_ticket(self, movie_id, num_tickets):
+        if num_tickets <= 0:
+            print("Booking should be unsuccessful")
+            return None
+
         if movie_id in self.movies:
             movie = self.movies[movie_id]
           
             if movie.available_seats >= num_tickets:
-                movie.available_seats = movie.available_seats - num_tickets
+                movie.available_seats -= num_tickets
                 cost = num_tickets * movie.price_per_ticket
-                self.total_rev = self.total_rev + cost
+                self.total_rev += cost
                 print("Booking successful")
+                print("Seats left now:", movie.available_seats)
                 return cost  
             else:
-                print("Not enough seats")
+                print("House full")
                 return None   
+        else:
+            print("Movie not found ")
+            return None
 
     def get_total_rev(self):
         return self.total_rev
 
+
 movie1 = Movie("Fast and Furious", 1, 10, 100)
 movie2 = Movie("Conjuring", 2, 10, 100)
 
-cinema = cinemahall()
+cinema = Cinemahall()  
 cinema.add_movie(movie1)
 cinema.add_movie(movie2)
 
@@ -56,15 +63,6 @@ cost2 = cinema.book_ticket(2, 3)
 print("Cost:", cost2)
 print("Total Rev:", cinema.get_total_rev())
 
-
-
-
-
-
-
-                
-
-            
 
 
 
