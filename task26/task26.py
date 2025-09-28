@@ -77,3 +77,44 @@ system.add_rider(rider2)
 
 system.match_rider_with_driver(1)
 system.match_rider_with_driver(2)
+
+
+
+# leet code problem 
+def func(s):
+    string = []
+    
+    max_length = 0
+    
+    for i in range(len(s)):
+        for j in range(i, len(s)):
+        
+            is_unique = True
+            for k in range(i, j+1):
+                if s[k] == s[j] and k != j:
+                    is_unique = False
+                    break
+            
+            if is_unique:
+                current_length = j - i + 1
+                if current_length > max_length:
+                    max_length = current_length
+            else:
+                break
+    
+    return max_length
+
+input1 = "abcabcbb"
+input2 = "bbbbb" 
+input3 = "pwwkew"
+
+print(func(input1))
+print(func(input2))
+print(func(input3))
+
+# Time complexcity of this task is 0(n*3)
+
+
+
+
+
