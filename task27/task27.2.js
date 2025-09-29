@@ -6,3 +6,5 @@ let repeating_num = arr1.filter((num => {
 }))
 
 console.log(repeating_num)
+
+// time complexcity of this problem is 0(n)
