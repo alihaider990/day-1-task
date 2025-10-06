@@ -15,47 +15,61 @@
             rating: +(3 + Math.random() * 2).toFixed(1) 
         }));
 
-        const grouped = {};
-        for (const course of courses) {
-            if (!grouped[course.category]) grouped[course.category] = [];
-            grouped[course.category].push(course);
-        }
+        const categorySummary = Object.entries(
+            courses.reduce((acc, course) => {
+                acc[course.category] = (acc[course.category] || 0) + course.enrolled;
+                return acc;
+            }, {})
+        ).map(([category, totalEnrollments]) => ({ category, totalEnrollments }))
+         .sort((a, b) => b.totalEnrollments - a.totalEnrollments);
 
-        const topCourses = [...courses].sort((a, b) => b.rating - a.rating).slice(0, 3);
-
+        
         function enroll(courseId, count = 1) {
             const course = courses.find(c => c.id === courseId);
-            if (course) course.enrolled += count;
-        }
-
-        const categoryrating = [];
-        for (const category in grouped) {
-            let total = 0;
-            for (const course of grouped[category]) {
-                total += course.enrolled;
+            if (!course) {
+                console.warn(`Course ID ${courseId} not found.`);
+                return;
             }
-            categoryrating.push({ category: category, totalEnrollments: total });
+            course.enrolled += count;
+            console.log(`${course.title} new enrollment count: ${course.enrolled}`);
         }
-        categoryrating.sort((a, b) => b.totalEnrollments - a.totalEnrollments);
-
-        const lowRatingCourses = courses.filter(c => c.rating < 4);
 
         
-        console.log("Loaded", courses.length, "courses.");
-        
-        console.log("\nTop 3 Courses by Rating:");
-        topCourses.forEach((course, index) => {
-            console.log(`${index + 1}. ${course.title} (Rating: ${course.rating})`);
-        });
+        const getTopCourses = (n = 3) => [...courses].sort((a, b) => b.rating - a.rating).slice(0, n);
+        const getLowRatingCourses = () => courses.filter(c => c.rating < 4);
+        const getMostEnrolledCategory = () => categorySummary[0]?.category || "None";
 
-        console.log("\nMost enrolled category:", categoryrating[0]?.category || "None");
+        const topCourses = getTopCourses();
+        const lowRatingCourses = getLowRatingCourses();
+        const mostEnrolledCategory = getMostEnrolledCategory();
 
-        console.log("\nCourses with rating < 4:");
-        lowRatingCourses.forEach(c => console.log("-", c.title, `(Rating: ${c.rating})`));
         
-        enroll(1, 3);
+        console.log(` Loaded ${courses.length} courses.\n`);
+        
+        console.log(" Top 3 Courses by Rating:");
+        console.table(topCourses.map((c, i) => ({ 
+            Rank: i + 1,
+            Title: c.title.substring(0, 40), 
+            Rating: c.rating, 
+            Enrolled: c.enrolled 
+        })));
+
+        console.log(`\n Most enrolled category: ${mostEnrolledCategory}`);
+        console.log("\n Category Enrollment Summary:");
+        console.table(categorySummary);
+
+        console.log(`\n  Courses with rating < 4 (${lowRatingCourses.length} found):`);
+        if (lowRatingCourses.length > 0) {
+            console.table(lowRatingCourses.map(c => ({ 
+                Title: c.title.substring(0, 40), 
+                Rating: c.rating,
+                Category: c.category
+            })));
+        }
+        
+        console.table(courses);
 
     } catch (err) {
-        console.error("Error:", err.message);
+        console.error(" Error:", err.message);
     }
 })();
