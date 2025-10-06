@@ -13,28 +13,35 @@
         const posts = await postsResponse.json();
         const users = await usersResponse.json();
 
-        
         const counts = {};
         posts.forEach(p => {
             counts[p.userId] = (counts[p.userId] || 0) + 1;
         });
 
-        
         const result = users.map(u => ({
             name: u.name,
             count: counts[u.id] || 0
         })).filter(u => u.count > 0);
 
-        
         result.sort((a, b) => b.count - a.count);
 
-        
         console.log("Top 3 active users:");
         for (let i = 0; i < 3 && i < result.length; i++) {
             const u = result[i];
             console.log(`${i + 1}. ${u.name} - ${u.count} posts`);
         }
 
+        const leaderboard = result.map(u => ({
+            name: u.name,
+            count: u.count
+        }));
+
+        console.table(leaderboard);
+
+        const topusers = leaderboard.sort((a, b) => b.count - a.count).slice(0, 3);
+        console.table(topusers);
+
+        return { leaderboard, topusers };
     } catch (error) {
         console.log("Something broke:", error.message);
     }
